@@ -20,6 +20,7 @@ import packageJson from "../../package.json";
 import { getDevCommand } from "./commands/dev.js";
 import { getExecCommand } from "./commands/exec.js";
 import { getEjectCommand } from "./commands/project/eject.js";
+import { getRemoteControlCommand } from "./commands/remote-control.js";
 import type { CLIContext } from "./types.js";
 
 export function createProgram(context: CLIContext): Command {
@@ -81,6 +82,9 @@ export function createProgram(context: CLIContext): Command {
 
   // Register exec command
   program.addCommand(getExecCommand());
+
+  // Register remote-control command
+  program.addCommand(getRemoteControlCommand());
 
   // Register development commands
   program.addCommand(getDevCommand(), { hidden: true });

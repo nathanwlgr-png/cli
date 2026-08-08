@@ -48,6 +48,7 @@ The CLI will guide you through project setup. For step-by-step tutorials, see th
 | [`eject`](https://docs.base44.com/developers/references/cli/commands/eject) | Download the code for an existing Base44 project |
 | [`link`](https://docs.base44.com/developers/references/cli/commands/link) | Link a local project to a Base44 project |
 | [`dashboard open`](https://docs.base44.com/developers/references/cli/commands/dashboard) | Open the app dashboard in your browser |
+| [`remote-control`](https://docs.base44.com/developers/references/cli/commands/remote-control) | Open a remote-control session for the current app |
 | [`login`](https://docs.base44.com/developers/references/cli/commands/login) | Authenticate with Base44 |
 | [`logout`](https://docs.base44.com/developers/references/cli/commands/logout) | Sign out and clear stored credentials |
 | [`whoami`](https://docs.base44.com/developers/references/cli/commands/whoami) | Display the current authenticated user |

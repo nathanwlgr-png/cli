@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- `remote-control` command to open a remote-control session for the current app
+
 ## [0.0.50] - 2026-03-30
 
 ### Added
