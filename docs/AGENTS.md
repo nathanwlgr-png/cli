@@ -15,18 +15,22 @@ The Base44 CLI (`base44` npm package) is a TypeScript command-line tool for crea
 
 ## Architecture
 
-The codebase has two layers with a clear separation of concerns:
+This is a Bun workspace monorepo (`packages/*`). The main `packages/cli` package has two layers with a clear separation of concerns:
 
 - **`packages/cli/src/core/`** - SDK layer: pure business logic with no UI or CLI concerns. Handles resources, auth, API clients, project config, site deployment, error classes, and utilities.
 - **`packages/cli/src/cli/`** - Presentation layer: CLI commands, user interaction, theming, telemetry, and wiring. Depends on `core/`, never the reverse.
 - **`packages/cli/bin/`** - Entry points: `run.js` (production, Node.js) and `dev.ts` (development, Bun runs TypeScript directly).
 - **`packages/cli/templates/`** - Project scaffolding templates for `base44 create`.
+- **`packages/cli/deno-runtime/`** - Code that runs in **Deno**, not Node.js: a local server started by `base44 dev` that mimics the production function runtime. Has its own `tsconfig.json` with Deno types to avoid conflicts with the Node types used everywhere else.
 - **`packages/cli/tests/`** - CLI integration tests (`cli/`), core unit tests (`core/`), and test fixtures (`fixtures/`).
+- **`packages/logger/`** - Separate workspace package (`@base44-cli/logger`) providing the `Logger` interface and its two implementations: `ClackLogger` (interactive) and `SimpleLogger` (non-interactive/CI). Consumed by `packages/cli` via `CLIContext.logger`.
 
 ```
-packages/cli/src/
-├── core/           # SDK: auth, clients, project, resources (entity/function/agent/connector), site, errors, utils
-└── cli/            # UI: commands, telemetry, utils (runCommand, runTask, theme, banner)
+packages/
+├── cli/src/
+│   ├── core/       # SDK: auth, clients, project, resources (entity/function/agent/connector), site, errors, utils
+│   └── cli/        # UI: commands, telemetry, utils (runCommand, runTask, theme, banner)
+└── logger/src/     # Logger interface + ClackLogger/SimpleLogger implementations
 ```
 
 ### Distribution
@@ -47,10 +51,13 @@ bun run typecheck      # tsc --noEmit
 bun run dev            # Run bin/dev.ts (no build needed, Bun runs TS directly)
 bun run start          # Run bin/run.js (requires build first)
 bun run test           # Run tests in npm mode (default; use `bun run test`, not `bun test`)
+bun run test tests/cli/login.spec.ts  # Run a single test file (needs build first)
+bun run test:watch     # Watch mode
 bun run test:npm       # Run tests against node bin/run.js (needs build)
 bun run test:binary    # Run tests against compiled binary (needs build + build:binaries)
 bun run lint           # Biome - lint and format check
 bun run lint:fix       # Biome - auto-fix
+bun run knip           # Find unused files, exports, and dependencies
 ```
 
 **Prerequisites**: Bun (`curl -fsSL https://bun.sh/install | bash`), Node.js >= 20.19.0 (for npm publishing).
