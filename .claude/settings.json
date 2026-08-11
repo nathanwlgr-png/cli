@@ -3,7 +3,28 @@
     "allow": [
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git worktree:*)"
+      "Bash(git worktree:*)",
+      "Bash(git status)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git fetch:*)",
+      "Bash(git checkout:*)",
+      "Bash(git branch:*)",
+      "Bash(git stash:*)",
+      "Bash(bun install)",
+      "Bash(bun run typecheck)",
+      "Bash(bun run typecheck:*)",
+      "Bash(bun run test)",
+      "Bash(bun run test:*)",
+      "Bash(bun run lint)",
+      "Bash(bun run lint:*)",
+      "Bash(bun run build)",
+      "Bash(bun run build:*)",
+      "Bash(bun run knip)",
+      "Bash(bun run knip:*)",
+      "Bash(bun run dev:*)"
     ]
   },
   "hooks": {
