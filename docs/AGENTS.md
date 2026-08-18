@@ -77,6 +77,7 @@ These apply to every task. See topic guides below for domain-specific rules.
 7. **No dynamic imports** - Use static imports at top of file, avoid `await import()`
 8. **consts.ts has no imports** - Keep `consts.ts` dependency-free to avoid circular deps
 9. **Keep docs updated** - Update files in `docs/` when architecture changes
+10. **Best available tool** - Always reach for the best tool available at that moment (MCP servers, connectors, skills, project CLIs) instead of improvising a workaround; connect to it directly when the task needs it
 
 ## Topic Guides
 
